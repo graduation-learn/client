@@ -3,7 +3,11 @@
     <div class="nav-center">
       <h1>欢迎来到大学生考研互助平台</h1>
       <div class="login-register">
-          <router-link  to="/login">登录</router-link>
+        <template>  
+           <router-link v-if="!username" to="/login">登录</router-link>
+           <p style="display:inline-block;color:#ccc" v-else>hello {{username}}</p>
+        </template>
+         
           <span>|</span>
           <router-link  to="/register">注册</router-link>
       </div>
@@ -12,7 +16,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      isLogin:false,
+      username:'',
+    }
+  },
+  created(){
+    this.username = this.$cookie.getCookie('username');
+
+  },
+  method(){
+
+  }
+};
 </script>
 
 <style lang="less">
