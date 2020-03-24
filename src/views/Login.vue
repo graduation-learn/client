@@ -31,52 +31,57 @@
 <script>
 export default {
   data() {
-    var checkName = (rule, value, callback) => {
-      if (!value.trim()) {
-        return callback(new Error("姓名不能为空"));
-      }
-      setTimeout(() => {
-        if (value.length < 5) {
-          callback(new Error("姓名必须大于5个字符"));
-        } else {
-          callback();
-        }
-      }, 1000);
-    };
-    var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else {
-        if (this.ruleForm.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
-        }
-        callback();
-      }
-    };
+
     return {
       ruleForm: {
         pass: "",
         name: ""
       },
-      rules: {
-        pass: [{ validator: validatePass, trigger: "blur" }],
-        name: [{ validator: checkName, trigger: "blur" }]
-      }
+        rules: {
+          name: [
+            { required: true, message: '请输入账号', trigger: 'blur' }
+          ],
+          pass: [
+            { required: true, message: '请输入密码', trigger: 'blur' }
+          ]
+        },
     };
   },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
-        if (valid) {
-          alert("submit!");
+        if (valid) {//校验合法，发送登录请求
+          this.sendUserInfo(this.ruleForm)
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    sendUserInfo(form){
+          this.$ajax({
+              method: 'post',
+              url: 'api/login',
+              data: {
+                username: form.name,
+                password: form.pass,
+              }
+            }).then((res) => {              console.log(res);
+              if(res.status == 200){
+                this.$cookie.setCookie('username', res.username, 1);
+                this.$cookie.setCookie('status', res.status, 1);
+                this.$showMessage(res.message,'success');
+                this.$router.push('/')
+              }else{
+                this.$showMessage(res.message,'error');
+              }
+               
+            }, (err) => {
+              this.$showMessage('服务器错误','error');
+
+            })
     }
   }
 };
