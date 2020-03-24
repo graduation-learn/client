@@ -50,6 +50,9 @@ import Footer from "@/components/Footer";
 import { getjyxdDetail } from "@/api/jyxd/jyxdDetail";
 import { getfszdDetail } from "@/api/fszd/fszdDetail";
 import { getenglishDetail } from "@/api/english/englishDetail";
+import { getpoliticsDetail } from "@/api/politics/politicsDetail";
+import { getmathDetail } from "@/api/math/mathDetail";
+import { getprofessionDetail } from "@/api/profession/professionDetail";
 export default {
   components: {
     Nav,
@@ -74,6 +77,19 @@ export default {
     }else if(this.$route.params.about === "english"){
       this.about = "英语"
       result = await getenglishDetail(this.$route.query.titleId);
+    }else if(this.$route.params.about === "math"){
+      this.about = "数学"
+      result = await getmathDetail(this.$route.query.titleId);
+      console.log(result);
+    }
+    else if(this.$route.params.about === "politics"){
+      this.about = "政治";
+      result = await getpoliticsDetail(this.$route.query.titleId);
+    }
+    else if(this.$route.params.about === "profession"){
+      this.about = "专业课"
+      result = await getprofessionDetail(this.$route.query.titleId);
+      
     }
 
     this.content = result[0];

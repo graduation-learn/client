@@ -44,21 +44,18 @@
         </div>
         <ul class="list-content clearfix">
           <li class="clearfix">
-            <a href="/kyzx/politics/" target="_blank">
+            <a href="/aticlelist/politics?page=1&limit=10" target="_blank">
               <span class="index-label index-red">政治</span>
             </a>
-            <a
-              href="/politics"
-              target="_blank"
-            >2020考研政治近代史纲大纲考点梳理：党的土地政策方面</a>
+            <a href="/politics?titleId=23807" target="_blank">2020考研政治近代史纲大纲考点梳理：党的土地政策方面</a>
           </li>
 
           <li class="clearfix">
-            <a href="/kyzx/politics/" target="_blank">
+            <a href="/aticlelist/politics?page=1&limit=10" target="_blank">
               <span class="index-label index-red">政治</span>
             </a>
             <a
-              href="/kyzx/politics/201911/20191118/1850286308.html;jsessionid=4DEA507B85E011BAA7D9D82105D53B29"
+              href="/politics?titleId=23808"
               target="_blank"
             >2020考研政治：中共二大主要内容回顾</a>
           </li>
@@ -67,38 +64,32 @@
             <a href="/aticlelist/english?page=1&limit=10" target="_blank">
               <span class="index-label index-green">英语</span>
             </a>
-            <router-link
-              to="/english?titleId=25194"
-              target="_blank"
-            >2020考研：英语历年真题怎么复习？</router-link>
+            <router-link to="/english?titleId=25194" target="_blank">2020考研：英语历年真题怎么复习？</router-link>
           </li>
 
           <li class="clearfix">
             <a href="/aticlelist/english?page=1&limit=10" target="_blank">
               <span class="index-label index-green">英语</span>
             </a>
-            <a
-              href="/english?titleId=25195"
-              target="_blank"
-            >2020考研英语：如何做好阅读的基础工作？</a>
+            <a href="/english?titleId=25195" target="_blank">2020考研英语：如何做好阅读的基础工作？</a>
           </li>
 
           <li class="clearfix">
-            <a href="/kyzx/math/" target="_blank">
+            <a href="/aticlelist/math/?page=1&limit=10" target="_blank">
               <span class="index-label index-blue">数学</span>
             </a>
             <a
-              href="/kyzx/math/201910/20191023/1837210546.html;jsessionid=4DEA507B85E011BAA7D9D82105D53B29"
+              href="/math?titleId=26722"
               target="_blank"
             >2020考研：396数学和199数学区别</a>
           </li>
 
           <li class="clearfix">
-            <a href="/kyzx/math/" target="_blank">
+            <a href="/aticlelist/math/?page=1&limit=10" target="_blank">
               <span class="index-label index-blue">数学</span>
             </a>
             <a
-              href="/kyzx/math/201910/20191008/1831984675.html;jsessionid=4DEA507B85E011BAA7D9D82105D53B29"
+              href="/math?titleId=26723"
               target="_blank"
             >2020考研数学冲刺：二重积分的计算思路</a>
           </li>
@@ -117,9 +108,9 @@
       <!-- yz-right start -->
       <div class="yz-right">
         <div class="side-head">
-          <span class="i-title">考研专题</span>
+          <span class="i-title">研友精选文章</span>
           <span class="more">
-            <a href="//www.chsi.com.cn/zthz/yz.jsp" target="_blank">更多 +</a>
+            <a href="/aticlelist/" target="_blank">更多 +</a>
           </span>
         </div>
         <div class="side-body">
@@ -161,12 +152,12 @@
 
 <script>
 import { getjyxdListByPage } from "@/api/jyxd/jyxdList.js";
-import {getfszdListByPage} from "@/api/fszd/fszdList.js";
+import { getfszdListByPage } from "@/api/fszd/fszdList.js";
 export default {
   data() {
     return {
       jyxdList: [],
-      fszdList:[]
+      fszdList: []
     };
   },
   async mounted() {

@@ -30,6 +30,9 @@
 import { getjyxdListByPage } from "@/api/jyxd/jyxdList";
 import { getfszdListByPage } from "@/api/fszd/fszdList";
 import { getenglishListByPage } from "@/api/english/englishList";
+import { getpoliticsListByPage } from "@/api/politics/politicsList";
+import { getmathListByPage } from "@/api/math/mathList";
+import { getprofessionListByPage } from "@/api/profession/professionList";
 import Nav from "@/components/Nav";
 import Pager from "@/components/Pager/Pager";
 const debounce = function(func, delay) {
@@ -67,6 +70,9 @@ export default {
     getjyxdListByPage,
     getfszdListByPage,
     getenglishListByPage,
+    getpoliticsListByPage,
+    getmathListByPage,
+    getprofessionListByPage,
     async aaa() {
       this.currentPage = +this.$route.query.page;
       this.limit = +this.$route.query.limit;
@@ -96,8 +102,15 @@ export default {
       this.about = "经验心得";
     } else if (this.$route.params.about === "fszd") {
       this.about = "复试备考";
-    }else if(this.$route.params.about === "english"){
-      this.about = "英语"
+    } else if (this.$route.params.about === "english") {
+      this.about = "英语";
+    } else if (this.$route.params.about === "politics") {
+      this.about = "政治";
+    }else if (this.$route.params.about === "math") {
+      this.about = "数学";
+    }
+    else if (this.$route.params.about === "profession") {
+      this.about = "专业课";
     }
     this.aaa();
   }

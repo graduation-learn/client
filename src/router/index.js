@@ -20,12 +20,12 @@ const routes = [{
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/aticlelist/:about(jyxd|fszd|english)',
+    path: '/aticlelist/:about(jyxd|fszd|english|politics|math|profession)',
     name:'aticle',
     component: () => import('@/views/AticleList.vue')
   },
   {
-    path: '/:about(jyxd|fszd|english)',
+    path: '/:about(jyxd|fszd|english|politics|math|profession)',
     name: 'Detail',
     component:()=>import('@/views/Detail.vue')
   }
