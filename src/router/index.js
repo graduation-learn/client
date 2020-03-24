@@ -28,6 +28,23 @@ const routes = [{
     path: '/:about(jyxd|fszd|english|politics|math|profession)',
     name: 'Detail',
     component:()=>import('@/views/Detail.vue')
+  },
+  {
+    path: '/personal',
+    name: 'personal',
+    component: () => import('@/views/Personal'),
+    redirect: '/personal/commit/english',
+    children: [
+      {
+        path: 'addartilce/:about(english|politics|math|profession)',
+        name: 'addArtilce',
+        component:()=>import('@/components/personal/AddArticle.vue')
+      }, {
+        path: 'commit/:about(jyxd|fszd|english|politics|math|profession)',
+        name: 'commit',
+        component:()=>import('@/components/personal/ShowTable.vue')
+      }
+    ]
   }
 ]
 
@@ -38,7 +55,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {//添加导航守卫
-  if (to.path == '/login' || to.path == '/applyCount') {
+  if (to.path == '/login' || to.path == '/applyCount' || to.path == '/') {
     next();
   } else {
     let status = document.cookie.split(';');

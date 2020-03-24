@@ -20,7 +20,7 @@ const http = options => {
     //console.log(newOptions);
     axios({
       method: newOptions.method,
-      url: `http://localhost:8090/${newOptions.url}`,
+      url: `${newOptions.url}`,
       data: newOptions.data,
       params:newOptions.params,
       headers: newOptions.headers
