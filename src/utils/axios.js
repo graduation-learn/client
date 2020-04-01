@@ -4,8 +4,8 @@ import axios from 'axios'
 const http = options => {
   return new Promise((resolve, reject) => {
     const defaultOptions = {
-        method:'get',
-        
+      method: 'get',
+
     };
     const newOptions = {
       ...defaultOptions,
@@ -20,14 +20,14 @@ const http = options => {
     //console.log(newOptions);
     axios({
       method: newOptions.method,
-      url: `${newOptions.url}`,
+      url: newOptions.url,
       data: newOptions.data,
-      params:newOptions.params,
+      params: newOptions.params,
       headers: newOptions.headers
     }).then(res => {
       //根据返回的状态码判断，注意res返回的并不一定都是status，比如小程序就是statusCode
       if (res.status == 200) {
-       //这里我们只需要获取返回的data中的数据即可
+        //这里我们只需要获取返回的data中的数据即可
         resolve(res.data);
       } else {
         reject(res);

@@ -31,27 +31,23 @@
 <script>
 export default {
   data() {
-
     return {
       ruleForm: {
         pass: "",
         name: ""
       },
-        rules: {
-          name: [
-            { required: true, message: '请输入账号', trigger: 'blur' }
-          ],
-          pass: [
-            { required: true, message: '请输入密码', trigger: 'blur' }
-          ]
-        },
+      rules: {
+        name: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        pass: [{ required: true, message: "请输入密码", trigger: "blur" }]
+      }
     };
   },
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
-        if (valid) {//校验合法，发送登录请求
-          this.sendUserInfo(this.ruleForm)
+        if (valid) {
+          //校验合法，发送登录请求
+          this.sendUserInfo(this.ruleForm);
         } else {
           return false;
         }
@@ -60,39 +56,43 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    sendUserInfo(form){
-          this.$ajax({
-              method: 'post',
-              url: 'api/login',
-              data: {
-                username: form.name,
-                password: form.pass,
-              }
-            }).then((res) => {              console.log(res);
-              if(res.status == 200){
-                this.$cookie.setCookie('username', res.username, 1);
-                this.$cookie.setCookie('status', res.status, 1);
-                this.$showMessage(res.message,'success');
-                this.$router.push('/')
-              }else{
-                this.$showMessage(res.message,'error');
-              }
-               
-            }, (err) => {
-              this.$showMessage('服务器错误','error');
-
-            })
+    sendUserInfo(form) {
+      this.$ajax({
+        method: "post",
+        url: "api/login",
+        data: {
+          username: form.name,
+          password: form.pass
+        }
+      }).then(
+        res => {
+          if (res.status == 200) {
+            localStorage.setItem("token", res.token);
+            localStorage.setItem("username",res.data.username);
+            localStorage.setItem("_id",res.data.id);
+            this.$store.commit("user/setUsername", res.data.username);
+            this.$store.commit("user/setUserId", res.data.id);
+            this.$showMessage(res.message, "success");
+            this.$router.push("/");
+          } else {
+            this.$showMessage(res.message, "error");
+          }
+        },
+        err => {
+          this.$showMessage("服务器错误", "error");
+        }
+      );
     }
   }
 };
 </script>
 
 <style lang="less">
-#fixed{
+#fixed {
   position: absolute;
-  width:100%;
-  height:100%;
-   background: rgb(201, 234, 238);
+  width: 100%;
+  height: 100%;
+  background: rgb(201, 234, 238);
 }
 #login-container {
   position: fixed;
@@ -105,7 +105,7 @@ export default {
   height: 200px;
   .to-register {
     position: absolute;
-    width: 130px;
+    width: 135px;
     height: 20px;
     right: 0px;
     bottom: 15px;

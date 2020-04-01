@@ -47,12 +47,8 @@
 <script>
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { getjyxdDetail } from "@/api/jyxd/jyxdDetail";
-import { getfszdDetail } from "@/api/fszd/fszdDetail";
-import { getenglishDetail } from "@/api/english/englishDetail";
-import { getpoliticsDetail } from "@/api/politics/politicsDetail";
-import { getmathDetail } from "@/api/math/mathDetail";
-import { getprofessionDetail } from "@/api/profession/professionDetail";
+
+import { queryArticleDetailById } from "@/api/articles/articles";
 export default {
   components: {
     Nav,
@@ -67,32 +63,21 @@ export default {
   },
   async mounted() {
     this.loading = true;
-    let result;
     if (this.$route.params.about === "jyxd") {
       this.about = "经验心得";
-      result = await getjyxdDetail(this.$route.query.titleId);
     } else if (this.$route.params.about === "fszd") {
       this.about = "复试备考";
-      result = await getfszdDetail(this.$route.query.titleId);
-    }else if(this.$route.params.about === "english"){
-      this.about = "英语"
-      result = await getenglishDetail(this.$route.query.titleId);
-    }else if(this.$route.params.about === "math"){
-      this.about = "数学"
-      result = await getmathDetail(this.$route.query.titleId);
-      console.log(result);
-    }
-    else if(this.$route.params.about === "politics"){
+    } else if (this.$route.params.about === "english") {
+      this.about = "英语";
+    } else if (this.$route.params.about === "math") {
+      this.about = "数学";
+    } else if (this.$route.params.about === "politics") {
       this.about = "政治";
-      result = await getpoliticsDetail(this.$route.query.titleId);
+    } else if (this.$route.params.about === "profession") {
+      this.about = "专业课";
     }
-    else if(this.$route.params.about === "profession"){
-      this.about = "专业课"
-      result = await getprofessionDetail(this.$route.query.titleId);
-      
-    }
-
-    this.content = result[0];
+    const result = await queryArticleDetailById(this.$route.query.id);
+    this.content = result;
     this.loading = false;
   }
 };
@@ -100,7 +85,8 @@ export default {
 
 <style lang="less">
 .content-detail {
-  margin: 20px auto 0px;
+  margin: auto;
+  padding-top: 70px;
   width: 1120px;
   .detail {
     margin-bottom: 20px;
@@ -118,5 +104,4 @@ export default {
     line-height: 30px;
   }
 }
-
 </style>

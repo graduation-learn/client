@@ -16,11 +16,21 @@
         <div class="side-body">
           <ul class="index-list">
             <li v-for="item in jyxdList" :key="item.id">
-              <router-link :to="{path:'/jyxd',query: { titleId: item.id }}">{{item.title}}</router-link>
+              <router-link :to="{path:'/jyxd',query: { id: item.id }}">{{item.title}}</router-link>
             </li>
           </ul>
+          <ul v-show="loading">
+            <li :class="`bar${i}`" v-for="i in 5" :key="i"></li>
+          </ul>
         </div>
+        <div style="height: 80px; margin-top: 31px; overflow: hidden;">
+          <img src="https://t3.chei.com.cn/axvert/img/1863806306.jpg" width="100%" height="100%" />
+        </div>
+      </div>
+      <!-- yz-left end -->
 
+      <!-- yz-right start -->
+      <div class="yz-main">
         <div class="side-head">
           <span class="i-title">复试备考</span>
           <span class="more">
@@ -30,113 +40,15 @@
         <div class="side-body">
           <ul class="index-list">
             <li v-for="item in fszdList" :key="item.id">
-              <router-link :to="{path:'/fszd',query: { titleId: item.id }}">{{item.title}}</router-link>
+              <router-link :to="{path:'/fszd',query: { id: item.id }}">{{item.title}}</router-link>
             </li>
           </ul>
-        </div>
-      </div>
-      <!-- yz-left end -->
-
-      <!-- yz-main start -->
-      <div class="yz-main">
-        <div class="side-head">
-          <span class="i-title">公共课</span>
-        </div>
-        <ul class="list-content clearfix">
-          <li class="clearfix">
-            <a href="/aticlelist/politics?page=1&limit=10" target="_blank">
-              <span class="index-label index-red">政治</span>
-            </a>
-            <a href="/politics?titleId=23807" target="_blank">2020考研政治近代史纲大纲考点梳理：党的土地政策方面</a>
-          </li>
-
-          <li class="clearfix">
-            <a href="/aticlelist/politics?page=1&limit=10" target="_blank">
-              <span class="index-label index-red">政治</span>
-            </a>
-            <a
-              href="/politics?titleId=23808"
-              target="_blank"
-            >2020考研政治：中共二大主要内容回顾</a>
-          </li>
-
-          <li class="clearfix">
-            <a href="/aticlelist/english?page=1&limit=10" target="_blank">
-              <span class="index-label index-green">英语</span>
-            </a>
-            <router-link to="/english?titleId=25194" target="_blank">2020考研：英语历年真题怎么复习？</router-link>
-          </li>
-
-          <li class="clearfix">
-            <a href="/aticlelist/english?page=1&limit=10" target="_blank">
-              <span class="index-label index-green">英语</span>
-            </a>
-            <a href="/english?titleId=25195" target="_blank">2020考研英语：如何做好阅读的基础工作？</a>
-          </li>
-
-          <li class="clearfix">
-            <a href="/aticlelist/math/?page=1&limit=10" target="_blank">
-              <span class="index-label index-blue">数学</span>
-            </a>
-            <a
-              href="/math?titleId=26722"
-              target="_blank"
-            >2020考研：396数学和199数学区别</a>
-          </li>
-
-          <li class="clearfix">
-            <a href="/aticlelist/math/?page=1&limit=10" target="_blank">
-              <span class="index-label index-blue">数学</span>
-            </a>
-            <a
-              href="/math?titleId=26723"
-              target="_blank"
-            >2020考研数学冲刺：二重积分的计算思路</a>
-          </li>
-        </ul>
-        <div style="height: 80px; margin-top: 31px; overflow: hidden;">
-          <a
-            target="_blank"
-            href="http://axvert.chsi.com.cn/goo.action?aid=1863806314&evtype=adv_https:_yz.chsi.com.cn"
-          >
-            <img src="https://t3.chei.com.cn/axvert/img/1863806306.jpg" width="100%" height="100%" />
-          </a>
-        </div>
-      </div>
-      <!-- yz-main end -->
-
-      <!-- yz-right start -->
-      <div class="yz-right">
-        <div class="side-head">
-          <span class="i-title">研友精选文章</span>
-          <span class="more">
-            <a href="/aticlelist/" target="_blank">更多 +</a>
-          </span>
-        </div>
-        <div class="side-body">
-          <ul class="index-list">
-            <li>
-              <a href="/yzzt/kyfs2020" target="_blank">2020年考研分数查询及复试分数线汇总</a>
-            </li>
-            <li>
-              <a href="/yzzt/yzcs2020" target="_blank">2020全国硕士研究生招生考试专题报道</a>
-            </li>
-            <li>
-              <a href="/yzzt/cxky2020" target="_blank">2020诚信研考：违规必究 违法必惩</a>
-            </li>
-            <li>
-              <a href="/yzzt/zbft2020" target="_blank">2020中国研究生招生信息网研招办访谈</a>
-            </li>
-            <li>
-              <a href="/yzzt/zbft2020" target="_blank">2020中国研究生招生信息网研招办访谈</a>
-            </li>
-            <li>
-              <a href="/yzzt/zbft2020" target="_blank">2020中国研究生招生信息网研招办访谈</a>
-            </li>
+          <ul v-show="loading">
+            <li :class="`bar${i}`" v-for="i in [5,4,3,2,1]" :key="i"></li>
           </ul>
         </div>
 
-        <div style="height: 80px; margin-top: 59px; overflow: hidden;">
+        <div style="height: 80px; margin-top: 30px; overflow: hidden;">
           <a
             target="_blank"
             href="http://axvert.chsi.com.cn/goo.action?aid=1894248583&evtype=adv_https:_yz.chsi.com.cn"
@@ -146,28 +58,87 @@
         </div>
       </div>
       <!-- yz-right end -->
+
+      <!-- yz-main start -->
+      <div class="yz-right">
+        <div class="side-head">
+          <span class="i-title">公共课</span>
+        </div>
+        <ul class="list-content clearfix">
+          <li class="clearfix">
+            <a href="/aticlelist/politics?page=1&limit=10" target="_blank">
+              <span class="index-label index-red">政治</span>
+            </a>
+            <a href="/politics?id=19931" target="_blank">2020考研政治近代史纲大纲考点梳理：党的土地政策方面</a>
+          </li>
+
+          <li class="clearfix">
+            <a href="/aticlelist/politics?page=1&limit=10" target="_blank">
+              <span class="index-label index-red">政治</span>
+            </a>
+            <a href="/politics?id=19932" target="_blank">2020考研政治：中共二大主要内容回顾</a>
+          </li>
+
+          <li class="clearfix">
+            <a href="/aticlelist/english?page=1&limit=10" target="_blank">
+              <span class="index-label index-green">英语</span>
+            </a>
+            <router-link to="/english?id=15703" target="_blank">2020考研：英语历年真题怎么复习？</router-link>
+          </li>
+
+          <li class="clearfix">
+            <a href="/aticlelist/english?page=1&limit=10" target="_blank">
+              <span class="index-label index-green">英语</span>
+            </a>
+            <a href="/english?id=15704" target="_blank">2020考研英语：如何做好阅读的基础工作？</a>
+          </li>
+
+          <li class="clearfix">
+            <a href="/aticlelist/math/?page=1&limit=10" target="_blank">
+              <span class="index-label index-blue">数学</span>
+            </a>
+            <a href="/math?id=21437" target="_blank">2020考研：396数学和199数学区别</a>
+          </li>
+
+          <li class="clearfix">
+            <a href="/aticlelist/math/?page=1&limit=10" target="_blank">
+              <span class="index-label index-blue">数学</span>
+            </a>
+            <a href="/math?id=21438" target="_blank">2020考研数学冲刺：二重积分的计算思路</a>
+          </li>
+        </ul>
+      </div>
+      <!-- yz-main end -->
     </div>
   </div>
 </template>
 
 <script>
-import { getjyxdListByPage } from "@/api/jyxd/jyxdList.js";
-import { getfszdListByPage } from "@/api/fszd/fszdList.js";
+import { queryArticleByPageAndType } from "@/api/articles/articles";
 export default {
   data() {
     return {
       jyxdList: [],
-      fszdList: []
+      fszdList: [],
+      loading: false
     };
   },
   async mounted() {
-    this.jyxdList = await getjyxdListByPage(1, 5).then(res => res.result);
-    this.fszdList = await getfszdListByPage(1, 5).then(res => res.result);
+    this.loading = true;
+    const jyxdList = await queryArticleByPageAndType(1, 5, "jyxd").then(
+      res => res.result
+    );
+    const fszdList = await queryArticleByPageAndType(1, 5, "fszd").then(
+      res => res.result
+    );
+    this.loading = false;
+    this.jyxdList = jyxdList;
+    this.fszdList = fszdList;
   }
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .part03 {
   color: #333;
   text-align: left;
@@ -196,26 +167,25 @@ export default {
 .part-body {
   padding-top: 28px;
 }
+.side-head .more {
+  position: absolute;
+  bottom: 8px;
+  right: 0;
+}
 .yz-left {
   width: 330px;
   float: left;
-
-  .side-head .more {
-    position: absolute;
-    bottom: 8px;
-    right: 0;
-  }
-  .index-list {
-    font-size: 14px;
-    line-height: 32px;
-    li {
-      height: 32px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      a {
-        color: #333;
-      }
+}
+.index-list {
+  font-size: 14px;
+  line-height: 32px;
+  li {
+    height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    a {
+      color: #333;
     }
   }
 }
@@ -242,54 +212,54 @@ export default {
   width: 350px;
   float: left;
   margin-left: 40px;
-  .side-head {
-    position: relative;
-    border-bottom: 1px solid #e5e5e5;
-    .list-content {
-      padding: 12px 0;
-      margin-bottom: 10px;
-    }
-    .list-content {
-      padding: 10px 0;
-    }
-    .clearfix {
-      zoom: 1;
-    }
-  }
+}
+.side-head {
+  position: relative;
+  border-bottom: 1px solid #e5e5e5;
   .list-content {
     padding: 12px 0;
     margin-bottom: 10px;
-    li {
-      height: 36px;
-      line-height: 36px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: 16px;
-      color: #d8d8d8;
-      a {
-        color: #333;
-      }
-      .index-red {
-        background-color: #ee6464;
-      }
-      .index-green {
-        background-color: #4cbc96;
-      }
-      .index-blue {
-        background-color: #3681d7;
-      }
-      .index-label {
-        display: inline-block;
-        width: 30px;
-        height: 18px;
-        line-height: 18px;
-        margin-right: 8px;
-        text-align: center;
-        font-size: 12px;
-        vertical-align: 2px;
-        color: #fff;
-      }
+  }
+  .list-content {
+    padding: 10px 0;
+  }
+  .clearfix {
+    zoom: 1;
+  }
+}
+.list-content {
+  padding: 12px 0;
+  margin-bottom: 10px;
+  li {
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    color: #d8d8d8;
+    a {
+      color: #333;
+    }
+    .index-red {
+      background-color: #ee6464;
+    }
+    .index-green {
+      background-color: #4cbc96;
+    }
+    .index-blue {
+      background-color: #3681d7;
+    }
+    .index-label {
+      display: inline-block;
+      width: 30px;
+      height: 18px;
+      line-height: 18px;
+      margin-right: 8px;
+      text-align: center;
+      font-size: 12px;
+      vertical-align: 2px;
+      color: #fff;
     }
   }
 }
@@ -324,6 +294,70 @@ export default {
         }
       }
     }
+  }
+}
+.bar1,
+.bar2,
+.bar3,
+.bar4,
+.bar5 {
+  height: 25px;
+  background-color: #ccc;
+  margin: 5px 0;
+}
+.bar1 {
+  animation: bar1 0.5s infinite alternate-reverse;
+}
+.bar2 {
+  animation: bar2 0.5s infinite alternate-reverse;
+}
+.bar3 {
+  animation: bar3 0.5s infinite alternate-reverse;
+}
+.bar4 {
+  animation: bar4 0.5s infinite alternate-reverse;
+}
+.bar5 {
+  animation: bar5 0.5s infinite alternate-reverse;
+}
+@keyframes bar1 {
+  from {
+    width: 150px;
+  }
+  to {
+    width: 100px;
+  }
+}
+@keyframes bar2 {
+  from {
+    width: 70px;
+  }
+  to {
+    width: 250px;
+  }
+}
+@keyframes bar3 {
+  from {
+    width: 200px;
+  }
+  to {
+    width: 70px;
+  }
+}
+@keyframes bar4 {
+  from {
+    width: 60px;
+  }
+  to {
+    width: 200px;
+  }
+}
+@keyframes bar5 {
+  from {
+    width: 10px;
+  }
+  to {
+    width: 120px;
   }
 }
 </style>

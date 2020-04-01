@@ -3,3 +3,36 @@
     position:fixed;
     top:20px !important;
 }
+
+  table {
+      width: 100%;
+      margin: 15px 0;
+      border: 0;
+  }
+
+  th {
+      background-color: #c3e7fa;
+      color: #000000;
+  }
+
+  th,
+  td {
+      font-size: 0.95em;
+      text-align: center;
+      padding: 4px;
+      border-collapse: collapse;
+      height: 35px;
+  }
+
+  th,
+  td {
+      border-width: 1px 0 1px 0;
+  }
+
+  tr:nth-child(odd) {
+      background-color: #ebf7fd;
+  }
+
+  tr:nth-child(even) {
+      background-color: #fdfdfd;
+  }

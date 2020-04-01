@@ -57,7 +57,7 @@ export default {};
   left: 147px;
   position: absolute;
   bottom: 0;
-  z-index: 999;
+  z-index: 2;
 }
 .search #search-word {
   width: 450px;

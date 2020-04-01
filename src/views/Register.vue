@@ -84,7 +84,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          this.register();
         } else {
           console.log("error submit!!");
           return false;
@@ -93,6 +93,33 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    register() {
+      this.$ajax({
+        method: "post",
+        url: "api/register",
+        data: {
+          username: this.ruleForm.name,
+          password: this.ruleForm.pass
+        }
+      }).then(
+        res => {
+          if (res.status == 200) {
+            localStorage.setItem("token", res.token);
+            localStorage.setItem("username", res.data.username);
+            localStorage.setItem("_id", res.data.id);
+            this.$store.commit("user/setUsername", res.data.username);
+            this.$store.commit("user/setUserId", res.data.id);
+            this.$showMessage(res.message, "success");
+            this.$router.push("/");
+          } else {
+            this.$showMessage(res.message, "error");
+          }
+        },
+        err => {
+          this.$showMessage("服务器错误", "error");
+        }
+      );
     }
   }
 };
@@ -116,7 +143,7 @@ export default {
   height: 270px;
   .to-login {
     position: absolute;
-    width: 130px;
+    width: 135px;
     height: 20px;
     right: 0px;
     bottom: 15px;

@@ -8,10 +8,8 @@
       </el-breadcrumb>
       <ul class="box-card">
         <li v-for="(item) in aticleList" :key="item.id">
-          <router-link
-            :to="{path:'/'+$route.params.about,query: { titleId: item.id }}"
-          >{{item.title}}</router-link>
-          <span class="time">{{item.time}}</span>
+          <router-link :to="{path:'/'+$route.params.about,query: { id: item.id }}">{{item.title}}</router-link>
+          <span class="time">{{item.ctime}}</span>
         </li>
       </ul>
       <div class="block">
@@ -23,18 +21,16 @@
         />
       </div>
     </div>
+    <Masker :loading="loading" />
   </div>
 </template>
 
 <script>
-import { getjyxdListByPage } from "@/api/jyxd/jyxdList";
-import { getfszdListByPage } from "@/api/fszd/fszdList";
-import { getenglishListByPage } from "@/api/english/englishList";
-import { getpoliticsListByPage } from "@/api/politics/politicsList";
-import { getmathListByPage } from "@/api/math/mathList";
-import { getprofessionListByPage } from "@/api/profession/professionList";
+import { queryArticleByPageAndType } from "@/api/articles/articles";
+
 import Nav from "@/components/Nav";
 import Pager from "@/components/Pager/Pager";
+import Masker from "@/components/mask/Masker";
 const debounce = function(func, delay) {
   let timer = null;
   return function() {
@@ -51,7 +47,8 @@ const debounce = function(func, delay) {
 export default {
   components: {
     Nav,
-    Pager
+    Pager,
+    Masker
   },
   data() {
     return {
@@ -59,7 +56,8 @@ export default {
       aticleList: [],
       currentPage: 5,
       total: 0,
-      limit: 10
+      limit: 10,
+      loading: false
     };
   },
   watch: {
@@ -67,37 +65,33 @@ export default {
     $route: "aaa"
   },
   methods: {
-    getjyxdListByPage,
-    getfszdListByPage,
-    getenglishListByPage,
-    getpoliticsListByPage,
-    getmathListByPage,
-    getprofessionListByPage,
     async aaa() {
       this.currentPage = +this.$route.query.page;
       this.limit = +this.$route.query.limit;
       await this.ListByPage(this.currentPage, this.limit);
     },
     async ListByPage(page, limit) {
-      const result = await this[
-        "get" + this.$route.params.about + "ListByPage"
-      ](page, limit);
+      const result = await queryArticleByPageAndType(
+        page,
+        limit,
+        this.$route.params.about
+      );
       this.total = result.count;
-      this.aticleList = result.result.map(item => {
-        item.time = new Date(item.time).toLocaleDateString();
-        return item;
-      });
+      this.aticleList = result.result;
+      this.loading = false;
     },
-    handleCurrentChange: function(val) {
+    handleCurrentChange: debounce(function(val) {
       if (val === this.currentPage) return;
+      this.loading = true;
       this.$router.push(
         `/aticlelist/${this.$route.params.about}?page=${val}&limit=${this.limit}`
       );
       this.currentPage = val;
       this.ListByPage(val, this.limit);
-    }
+    }, 100)
   },
   async mounted() {
+    this.loading = true;
     if (this.$route.params.about === "jyxd") {
       this.about = "经验心得";
     } else if (this.$route.params.about === "fszd") {
@@ -106,10 +100,9 @@ export default {
       this.about = "英语";
     } else if (this.$route.params.about === "politics") {
       this.about = "政治";
-    }else if (this.$route.params.about === "math") {
+    } else if (this.$route.params.about === "math") {
       this.about = "数学";
-    }
-    else if (this.$route.params.about === "profession") {
+    } else if (this.$route.params.about === "profession") {
       this.about = "专业课";
     }
     this.aaa();
@@ -119,7 +112,7 @@ export default {
 
 <style lang="less">
 .content-list {
-  margin: 20px auto 0px;
+  margin: 70px auto 0px;
   width: 1120px;
   .box-card {
     padding: 20px;

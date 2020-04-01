@@ -74,9 +74,9 @@ export default {
 .number {
   display: inline-block;
   border: 1px solid lightblue;
-  width: 45px;
-  height: 45px;
-  line-height: 45px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
   font-size: 12px;
   text-align: center;
   margin: 0 10px;
