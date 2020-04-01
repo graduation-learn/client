@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
+import verify from '@/api/verify'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -81,15 +81,24 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {//添加导航守卫
+router.beforeEach(async (to, from, next) => {//添加导航守卫
   if (to.path == '/login' || to.path == '/register' || to.path == '/') {
     next();
   } else {
     const token = localStorage.getItem('token');
-    
     if (token) {
-      next();
-    } else {
+      const result = await verify();
+      if (result.message === "ok") {
+        next();
+        return;
+      } else {
+        Vue.prototype.$showMessage(result.message, 'error');
+        setTimeout(() => {
+          location.href = '/login'
+        }, 1000);
+      }
+    }
+    else {
       Vue.prototype.$showMessage('您还没有权限，请先登录', 'error');
       setTimeout(() => {
         location.href = '/login'

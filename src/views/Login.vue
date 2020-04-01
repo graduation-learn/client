@@ -68,12 +68,12 @@ export default {
         res => {
           if (res.status == 200) {
             localStorage.setItem("token", res.token);
-            localStorage.setItem("username",res.data.username);
-            localStorage.setItem("_id",res.data.id);
+            localStorage.setItem("username", res.data.username);
+            localStorage.setItem("_id", res.data.id);
             this.$store.commit("user/setUsername", res.data.username);
             this.$store.commit("user/setUserId", res.data.id);
             this.$showMessage(res.message, "success");
-            this.$router.push("/");
+            location.href = "/";
           } else {
             this.$showMessage(res.message, "error");
           }
