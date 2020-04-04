@@ -42,30 +42,27 @@ export default {
       loading: false
     };
   },
-  async mounted() {
-    this.loading = true;
-    this.result = await queryArticleByUserIdAndType(
-      this.$store.state.user.userId,
-      this.about,
-      -1
-    );
-    this.loading = false;
+  mounted() {
+    this.requestData();
   },
   watch: {
-    async $route() {
+    $route() {
+      this.requestData();
+    }
+  },
+  methods: {
+    async requestData() {
       this.loading = true;
-      this.about = this.$route.params.about;
       this.result = await queryArticleByUserIdAndType(
         this.$store.state.user.userId,
         this.about,
         -1
       );
       this.loading = false;
-    }
-  },
-  methods: {
-    deleteArticle(id) {
-      deleteArticleById(id);
+    },
+    async deleteArticle(id) {
+      await deleteArticleById(id);
+      this.requestData();
     }
   }
 };

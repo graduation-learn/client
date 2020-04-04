@@ -40,10 +40,19 @@ exports.queryArticleByPageAndType = async (page, limit, type) => {
     return result;
 }
 
-exports.queryArticleDetailById= async (id) => {
+exports.queryArticleDetailById = async (id) => {
     const result = await axios.get('/api/queryArticleDetailById', {
         params: {
             id
+        }
+    }).then(res => res.data);
+    return result;
+}
+
+exports.queryTitleListByKeyValueAndPage = async (wd, page, limit) => {
+    const result = await axios.get('/api/queryTitleListByKeyValueAndPage', {
+        params: {
+            wd, page, limit
         }
     }).then(res => res.data);
     return result;

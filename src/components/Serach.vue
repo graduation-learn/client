@@ -7,8 +7,8 @@
     </div>
     <div class="search">
       <div class="search-box">
-        <input type="text" id="search-word" placeholder="请输入考研相关的内容"/>
-        <button class="search-btn">搜索</button>
+        <input type="text" id="search-word" placeholder="请输入考研相关的内容" v-model="inputValue" />
+        <button class="search-btn" @click="search">搜索</button>
       </div>
     </div>
     <div class="phone">
@@ -18,7 +18,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      inputValue: ""
+    };
+  },
+  methods: {
+    search: function() {
+      this.$router.push({
+        path: "/search",
+        query: { wd: this.inputValue, page: 1, limit: 10 }
+      });
+    }
+  }
+};
 </script>
 
 <style lang="less">

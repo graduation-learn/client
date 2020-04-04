@@ -7,7 +7,7 @@
         <el-breadcrumb-item>{{about}}</el-breadcrumb-item>
       </el-breadcrumb>
       <ul class="box-card">
-        <li v-for="(item) in aticleList" :key="item.id">
+        <li v-for="(item) in articleList" :key="item.id">
           <router-link :to="{path:'/'+$route.params.about,query: { id: item.id }}">{{item.title}}</router-link>
           <span class="time">{{item.ctime}}</span>
         </li>
@@ -31,18 +31,7 @@ import { queryArticleByPageAndType } from "@/api/articles/articles";
 import Nav from "@/components/Nav";
 import Pager from "@/components/Pager/Pager";
 import Masker from "@/components/mask/Masker";
-const debounce = function(func, delay) {
-  let timer = null;
-  return function() {
-    if (timer) {
-      return;
-    }
-    timer = setTimeout(() => {
-      func.apply(this, arguments);
-      timer = null;
-    }, delay);
-  };
-};
+import debounce from "@/utils/debounce";
 
 export default {
   components: {
@@ -53,7 +42,7 @@ export default {
   data() {
     return {
       about: "",
-      aticleList: [],
+      articleList: [],
       currentPage: 5,
       total: 0,
       limit: 10,
@@ -77,14 +66,14 @@ export default {
         this.$route.params.about
       );
       this.total = result.count;
-      this.aticleList = result.result;
+      this.articleList = result.result;
       this.loading = false;
     },
     handleCurrentChange: debounce(function(val) {
       if (val === this.currentPage) return;
       this.loading = true;
       this.$router.push(
-        `/aticlelist/${this.$route.params.about}?page=${val}&limit=${this.limit}`
+        `/articlelist/${this.$route.params.about}?page=${val}&limit=${this.limit}`
       );
       this.currentPage = val;
       this.ListByPage(val, this.limit);

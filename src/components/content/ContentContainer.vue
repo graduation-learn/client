@@ -10,7 +10,7 @@
         <div class="side-head">
           <span class="i-title">经验交流</span>
           <span class="more">
-            <router-link :to="{path:'/aticlelist/jyxd',query:{page:1,limit:10}}">更多 +</router-link>
+            <router-link :to="{path:'/articlelist/jyxd',query:{page:1,limit:10}}">更多 +</router-link>
           </span>
         </div>
         <div class="side-body">
@@ -34,7 +34,7 @@
         <div class="side-head">
           <span class="i-title">复试备考</span>
           <span class="more">
-            <router-link :to="{path:'/aticlelist/fszd',query:{page:1,limit:10}}">更多 +</router-link>
+            <router-link :to="{path:'/articlelist/fszd',query:{page:1,limit:10}}">更多 +</router-link>
           </span>
         </div>
         <div class="side-body">
@@ -66,42 +66,42 @@
         </div>
         <ul class="list-content clearfix">
           <li class="clearfix">
-            <a href="/aticlelist/politics?page=1&limit=10" target="_blank">
+            <a href="/articlelist/politics?page=1&limit=10" target="_blank">
               <span class="index-label index-red">政治</span>
             </a>
             <a href="/politics?id=19931" target="_blank">2020考研政治近代史纲大纲考点梳理：党的土地政策方面</a>
           </li>
 
           <li class="clearfix">
-            <a href="/aticlelist/politics?page=1&limit=10" target="_blank">
+            <a href="/articlelist/politics?page=1&limit=10" target="_blank">
               <span class="index-label index-red">政治</span>
             </a>
             <a href="/politics?id=19932" target="_blank">2020考研政治：中共二大主要内容回顾</a>
           </li>
 
           <li class="clearfix">
-            <a href="/aticlelist/english?page=1&limit=10" target="_blank">
+            <a href="/articlelist/english?page=1&limit=10" target="_blank">
               <span class="index-label index-green">英语</span>
             </a>
             <router-link to="/english?id=15703" target="_blank">2020考研：英语历年真题怎么复习？</router-link>
           </li>
 
           <li class="clearfix">
-            <a href="/aticlelist/english?page=1&limit=10" target="_blank">
+            <a href="/articlelist/english?page=1&limit=10" target="_blank">
               <span class="index-label index-green">英语</span>
             </a>
             <a href="/english?id=15704" target="_blank">2020考研英语：如何做好阅读的基础工作？</a>
           </li>
 
           <li class="clearfix">
-            <a href="/aticlelist/math/?page=1&limit=10" target="_blank">
+            <a href="/articlelist/math/?page=1&limit=10" target="_blank">
               <span class="index-label index-blue">数学</span>
             </a>
             <a href="/math?id=21437" target="_blank">2020考研：396数学和199数学区别</a>
           </li>
 
           <li class="clearfix">
-            <a href="/aticlelist/math/?page=1&limit=10" target="_blank">
+            <a href="/articlelist/math/?page=1&limit=10" target="_blank">
               <span class="index-label index-blue">数学</span>
             </a>
             <a href="/math?id=21438" target="_blank">2020考研数学冲刺：二重积分的计算思路</a>

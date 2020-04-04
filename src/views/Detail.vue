@@ -12,7 +12,7 @@
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
 
         <el-breadcrumb-item
-          :to="{path:'/aticlelist/'+$route.params.about,query:{page:1,limit:10}}"
+          :to="{path:'/articlelist/'+$route.params.about,query:{page:1,limit:10}}"
         >{{about}}</el-breadcrumb-item>
         <el-breadcrumb-item>文章详情</el-breadcrumb-item>
       </el-breadcrumb>
@@ -25,6 +25,7 @@
         <div class="content" v-html="content.content"></div>
       </div>
     </div>
+    <Comment :commentData="commentData" :articleId="content.id" :getDatas="getDatas" />
     <Footer />
     <el-backtop target="#app" :bottom="100">
       <div
@@ -47,18 +48,22 @@
 <script>
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Comment from "@/components/comment";
 
 import { queryArticleDetailById } from "@/api/articles/articles";
+import { queryCommentByArticleId } from "@/api/comments/comments";
 export default {
   components: {
     Nav,
-    Footer
+    Footer,
+    Comment
   },
   data() {
     return {
       about: "",
       content: "",
-      loading: false
+      loading: false,
+      commentData: []
     };
   },
   async mounted() {
@@ -76,9 +81,15 @@ export default {
     } else if (this.$route.params.about === "profession") {
       this.about = "专业课";
     }
-    const result = await queryArticleDetailById(this.$route.query.id);
-    this.content = result;
-    this.loading = false;
+    this.getDatas();
+  },
+  methods: {
+    async getDatas() {
+      const result = await queryArticleDetailById(this.$route.query.id);
+      this.commentData = await queryCommentByArticleId(result.id);
+      this.content = result;
+      this.loading = false;
+    }
   }
 };
 </script>
@@ -87,7 +98,7 @@ export default {
 .content-detail {
   margin: auto;
   padding-top: 70px;
-  width: 1120px;
+  width: 80%;
   .detail {
     margin-bottom: 20px;
   }

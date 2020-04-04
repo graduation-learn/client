@@ -10,6 +10,11 @@ const routes = [{
   component: Home
 },
 {
+  path: '/error',
+  name: "error",
+  component: () => import('@/views/NotFound.vue')
+},
+{
   path: '/login',
   name: 'login',
   component: () => import('../views/Login.vue')
@@ -20,9 +25,14 @@ const routes = [{
   component: () => import('../views/Register.vue')
 },
 {
-  path: '/aticlelist/:about(jyxd|fszd|english|politics|math|profession)',
-  name: 'aticle',
-  component: () => import('@/views/AticleList.vue')
+  path: '/articlelist/:about(jyxd|fszd|english|politics|math|profession)',
+  name: 'article',
+  component: () => import('@/views/ArticleList.vue')
+},
+{
+  path: '/search',
+  name: "search",
+  component: () => import("@/views/SearchResult.vue")
 },
 {
   path: '/:about(jyxd|fszd|english|politics|math|profession)',

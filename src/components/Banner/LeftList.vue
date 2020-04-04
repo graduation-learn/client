@@ -1,11 +1,11 @@
 <template>
   <div class="leftList">
     <ul class="list">
-      <router-link tag="li" :to="{path:'aticlelist/english',query:{page:1,limit:10}}">考研英语</router-link>
+      <router-link tag="li" :to="{path:'articlelist/english',query:{page:1,limit:10}}">考研英语</router-link>
 
-      <router-link tag="li" :to="{path:'aticlelist/math',query:{page:1,limit:10}}">考研数学</router-link>
-      <router-link tag="li" :to="{path:'aticlelist/politics',query:{page:1,limit:10}}">考研政治</router-link>
-      <router-link tag="li" :to="{path:'aticlelist/profession',query:{page:1,limit:10}}">专业课</router-link>
+      <router-link tag="li" :to="{path:'articlelist/math',query:{page:1,limit:10}}">考研数学</router-link>
+      <router-link tag="li" :to="{path:'articlelist/politics',query:{page:1,limit:10}}">考研政治</router-link>
+      <router-link tag="li" :to="{path:'articlelist/profession',query:{page:1,limit:10}}">专业课</router-link>
     </ul>
   </div>
 </template>
